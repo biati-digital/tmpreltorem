@@ -14,8 +14,10 @@ jobs:
       run: |
         if ${{ contains(github.ref, 'alpha') }} || ${{ contains(github.ref, 'beta') }}; then
           echo '::set-output name=tag::next'
+          echo '::set-output name=prerelease::true'
         else
           echo '::set-output name=tag::latest'
+          echo '::set-output name=prerelease::false'
         fi
     - name: Print Tag Type
       run: |
@@ -33,6 +35,7 @@ jobs:
         artifacts: "master.zip"
         allowUpdates: "true"
         token: ${{ secrets.GB_TOKEN }}
+        prerelease: ${{ steps.tag-type.outputs.prerelease }}
     - name: NPM Publish Package
       uses: JS-DevTools/npm-publish@v1
       with:
