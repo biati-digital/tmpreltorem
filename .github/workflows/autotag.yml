@@ -6,7 +6,9 @@ on:
       - main
 jobs:
   build:
-    if: "startsWith(github.event.head_commit.message, 'Release')"
+    if: |
+      github.event.pusher.name == github.event.repository.owner.name
+       && startsWith(github.event.head_commit.message, 'Release')
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -25,4 +27,4 @@ jobs:
       run: echo 'The not created.'
     - name: Tag Created output
       if: ${{ steps.tagger-action.outputs.tag != '' }}
-      run: echo 'Tag created:  ${{ steps.tagger-action.outputs.tag }}'
+      run: echo "Tag created ${{ steps.tagger-action.outputs.tag }}"
