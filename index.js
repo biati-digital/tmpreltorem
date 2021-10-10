@@ -1,4 +1,4 @@
 module.exports = (opts = {}) => {
     console.log('process 1');
-  console.log('unwanted line from pull request 3');
+  console.log('unwanted line from pull request 4');
 };
