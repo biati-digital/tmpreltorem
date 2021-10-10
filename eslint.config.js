@@ -1,12 +1,12 @@
-{
-  "parserOptions": {
-    "ecmaVersion": 12,
-    "sourceType": "module",
-    "ecmaFeatures": {
-      "jsx": true
+module.exports = {
+  parserOptions: {
+    ecmaVersion: 12,
+    sourceType: "module",
+    ecmaFeatures: {
+      jsx: true
     }
   },
-  "rules": {
+  rules: {
     "semi": ["warn", "always"],
     "no-extra-semi": "error",
     "brace-style": "error",
@@ -91,4 +91,4 @@
     "comma-spacing": ["error", { "before": false, "after": true }],
     "no-unused-vars": ["warn", { "vars": "local", "args": "none", "ignoreRestSiblings": false }]
   }
-}
+};
