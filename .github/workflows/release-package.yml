@@ -13,9 +13,9 @@ jobs:
       id: tag-type
       run: |
         if ${{ contains(github.ref, 'beta') }}; then
-          echo '::set-env name=tag::next'
+          echo '::set-output name=tag::next'
         else
-          echo '::set-env name=tag::latest'
+          echo '::set-output name=tag::latest'
         fi
     - name: Print Tag Type
       run: |
