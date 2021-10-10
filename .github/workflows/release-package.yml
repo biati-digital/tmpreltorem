@@ -12,7 +12,7 @@ jobs:
     - name: Check Tag Type
       id: tag-type
       run: |
-        if ${{ contains(${GITHUB_REF#refs/tags/}, 'beta') }}; then
+        if ${{ contains(github.ref, 'beta') }}; then
           echo '::set-env name=tag::next'
         else
           echo '::set-env name=tag::latest'
