@@ -9,6 +9,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Check Tag Type
+      id: tag-type
+      run: |
+        if ${{ contains(GITHUB_REF, 'beta') }}; then
+          echo '::set-env name=tag::next'
+        else
+          echo '::set-env name=tag::latest)'
+        fi
+    - name: Print Tag Type
+      run: |
+        echo "Tag created ${{ steps.tag-type.outputs.tag }}"
+        echo "Ref ${GITHUB_REF}"
     - name: Archive Release
       uses: thedoctor0/zip-release@master
       with:
@@ -24,4 +36,5 @@ jobs:
     - name: NPM Publish Package
       uses: JS-DevTools/npm-publish@v1
       with:
+        tag: ${{ steps.tag-type.outputs.tag }}
         token: ${{ secrets.NPM_AUTH_TOKEN }}
