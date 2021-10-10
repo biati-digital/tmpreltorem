@@ -6,23 +6,18 @@
       "license": "MIT",
       "repository": "https://github.com/biati-digital/tmpreltorem.git",
       "files": [
-        "index.js"
+            "index.js"
       ],
       "engines": {
-        "node": ">=10.0.0"
+            "node": ">=10.0.0"
       },
       "scripts": {
-        "lint": "eslint . --fix",
-        "pretest": "npm run lint",
-        "test": "ava"
+            "lint": "eslint --ignore-path .gitignore index.js",
+            "pretest": "npm run lint",
+            "test": "ava"
       },
-      "eslintConfig": {
-        "extends": "eslint-config-problems",
-        "env": {
-          "node": true
-        },
-        "plugins": [
-          "prettier"
-        ]
+      "devDependencies": {
+            "eslint": "^8.0.0",
+            "eslint-config-strongloop": "^2.1.0"
       }
-    }
+}

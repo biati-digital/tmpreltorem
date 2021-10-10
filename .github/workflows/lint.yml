@@ -6,12 +6,16 @@ jobs:
   eslint:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-      - name: Lint
-        uses: Krizzu/eslint-check-action@v1.1.0
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
         with:
-          ghToken: ${{ secrets.GITHUB_TOKEN }}
-          eslintFiles: "index.js"
-          eslintConfig: "eslint.config.js"
-          eslintExt: "js, ts, tsx"
+          node-version: 14
+      - name: Install
+        run: yarn
+      - name: Run eslint on changed files
+        uses: tj-actions/eslint-changed-files@v7.3
+        with:
+          config_path: ".eslintrc.json"
+          ignore_path: ".gitignore"
+          extensions: "ts,tsx,js,jsx"
+          extra_args: "--max-warnings=0"
