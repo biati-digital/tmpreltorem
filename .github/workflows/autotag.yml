@@ -14,18 +14,8 @@ jobs:
       id: tagger-action
       uses: christophebedard/tag-version-commit@v1
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.GB_TOKEN }}
         version_regex: 'Release v?([0-9]+\.[0-9]+\.[0-9]+)'
         version_tag_prefix: 'v'
         check_entire_commit_message: true
         version_assertion_command: 'grep -q "\"version\": \"$version\"" package.json'
-    - name: Tag Empty output
-      if: ${{ steps.tagger-action.outputs.tag == '' }}
-      run: echo 'The tag was empty.'
-    - name: Tag Created Dispatch Event
-      if: ${{ steps.tagger-action.outputs.tag != '' }}
-      uses: peter-evans/repository-dispatch@v1
-      with:
-        token: ${{ secrets.GB_TOKEN }}
-        event-type: tagged
-        client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'

@@ -3,6 +3,8 @@ on:
   push:
     tags:
       - '*'
+  repository_dispatch:
+      types: [tag-created]
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -18,7 +20,8 @@ jobs:
       uses: ncipollo/release-action@v1
       with:
         artifacts: "master.zip"
-        token: ${{ secrets.GITHUB_TOKEN }}
+        allowUpdates: "true"
+        token: ${{ secrets.GB_TOKEN }}
     - name: NPM Publish Package
       uses: JS-DevTools/npm-publish@v1
       with:
