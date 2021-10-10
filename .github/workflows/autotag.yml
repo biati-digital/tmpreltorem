@@ -18,7 +18,7 @@ jobs:
       uses: christophebedard/tag-version-commit@v1
       with:
         token: ${{ secrets.GB_TOKEN }}
-        version_regex: 'Release v?([0-9]+\.[0-9]+\.[0-9]+)'
+        version_regex: 'Release v?((0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?)'
         version_tag_prefix: 'v'
         check_entire_commit_message: true
         version_assertion_command: 'grep -q "\"version\": \"$version\"" package.json'
