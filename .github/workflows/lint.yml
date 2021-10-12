@@ -15,10 +15,7 @@ jobs:
               - 'dist/**'
             js:
               - 'src/js/**'
-
-      - name: Check for dist files
-        if: steps.changes.outputs.dist == 'true'
-      - name: Comment PR
+      - name: Checking PR
         if: steps.changes.outputs.dist == 'true'
         uses: thollander/actions-comment-pull-request@v1
         with:
