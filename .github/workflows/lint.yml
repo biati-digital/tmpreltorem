@@ -19,7 +19,7 @@ jobs:
         if: steps.changes.outputs.dist == 'true'
         uses: thollander/actions-comment-pull-request@v1
         with:
-          message: 'Do not include dist files. Please read the [CONTRIBUTING](./CONTRIBUTING.md) before doing a PR.'
+          message: 'Automated message. Please read the [CONTRIBUTING](./CONTRIBUTING.md) before doing a PR. Dist files should not be included, the files are generated automatically.'
           GITHUB_TOKEN: ${{ secrets.GB_TOKEN }}
       - if: steps.changes.outputs.dist == 'true'
         run: exit 1
