@@ -139,6 +139,7 @@ export class GLightbox {
 
     async processss() {
         console.log('do process');
+        console.log('and also do another process yes');
     }
 
     init() {
@@ -1077,7 +1078,7 @@ export class GLightbox {
 
         if (image) {
             if (winWidth <= 768) {
-                let imgNode = image.querySelector('img');
+                //let imgNode = image.querySelector('img');
                 //imgNode.setAttribute('style', '');
             } else if (descriptionResize) {
                 let descHeight = description.offsetHeight;
