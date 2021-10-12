@@ -7,12 +7,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            js:
+              - 'src/js/**'
       - uses: actions/setup-node@v2
+        if: steps.changes.outputs.js == 'true'
         with:
           node-version: 14
       - name: Install
+        if: steps.changes.outputs.js == 'true'
         run: yarn
       - name: Run eslint on changed files
+        if: steps.changes.outputs.js == 'true'
         uses: tj-actions/eslint-changed-files@v7.3
         with:
           config_path: ".eslintrc.json"

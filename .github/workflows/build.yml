@@ -10,13 +10,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: dorny/paths-filter@v2
+        id: changes
+        with:
+          filters: |
+            src:
+              - 'src/**'
+
       - uses: actions/setup-node@v2
+        if: steps.changes.outputs.src == 'true'
         with:
           node-version: '14'
           cache: 'npm'
       - run: npm ci
+        if: steps.changes.outputs.src == 'true'
       - run: npm run build:production
+        if: steps.changes.outputs.src == 'true'
       - uses: EndBug/add-and-commit@v7
+        if: steps.changes.outputs.src == 'true'
         with:
           committer_name: GitHub Actions
           message: 'Automatic build by github action'
