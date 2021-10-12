@@ -16,7 +16,7 @@ jobs:
 
       - name: Check for dist files
         if: steps.changes.outputs.dist == 'true'
-        uses: andymckay/cancel-action@0.2
+        run: exit 1
       - name: Hulk
         run: echo 'Doing hulk.'
 
