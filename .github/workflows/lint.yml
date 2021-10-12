@@ -27,7 +27,6 @@ jobs:
       - if: steps.changes.outputs.dist == 'true'
         run: exit 1
 
-      #eslint
       - name: Check if Javascript lint is required
         if: success() && steps.changes.outputs.js == 'true'
         uses: actions/setup-node@v2
