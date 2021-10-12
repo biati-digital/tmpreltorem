@@ -35,3 +35,8 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run build:production
+      - uses: EndBug/add-and-commit@v7
+        with:
+          committer_name: GitHub Actions
+          message: 'Automatic build by github action'
+          add: 'dist'
