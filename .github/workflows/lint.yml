@@ -19,3 +19,19 @@ jobs:
           ignore_path: ".gitignore"
           extensions: "ts,tsx,js,jsx"
           extra_args: "--max-warnings=0"
+
+  build:
+    needs: eslint
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [ '12', '14', '16' ]
+    name: Node ${{ matrix.node }} sample
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build:production
