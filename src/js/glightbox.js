@@ -139,7 +139,7 @@ export class GLightbox {
 
     async processss() {
         console.log('do process');
-        console.log('and also do another process');
+        console.log('and also do another process hukl');
     }
 
     init() {
