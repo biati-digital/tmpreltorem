@@ -11,8 +11,14 @@ jobs:
         id: changes
         with:
           filters: |
+            dist:
+              - 'dist/**'
             js:
               - 'src/js/**'
+
+      - name: Check for dist files
+        if: steps.changes.outputs.dist == 'true'
+        uses: andymckay/cancel-action@0.2
       - uses: actions/setup-node@v2
         if: steps.changes.outputs.js == 'true'
         with:
