@@ -1507,7 +1507,7 @@ class GLightbox {
     console.log("Rammstein");
     console.log("Supercool");
     console.log("onepo");
-    console.log("giebelushkasdasdasaasdasd");
+    console.log("hshshsh");
   }
   init() {
     const selector = this.getSelector();
