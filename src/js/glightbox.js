@@ -141,6 +141,7 @@ export class GLightbox {
         console.log('do process');
         console.log('and also do another process yes');
         console.log('Rammstein');
+        console.log('Supercool');
     }
 
     init() {
