@@ -3,7 +3,7 @@ name: Lint
 on: pull_request
 
 jobs:
-  verify:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -13,32 +13,29 @@ jobs:
           filters: |
             dist:
               - 'dist/**'
-
-      - name: Check for dist files
-        if: steps.changes.outputs.dist == 'true'
-        run: exit 1
-      - name: Hulk
-        run: echo 'Doing hulk.'
-
-  eslint:
-    needs: verify
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: dorny/paths-filter@v2
-        id: changes
-        with:
-          filters: |
             js:
               - 'src/js/**'
 
-      - uses: actions/setup-node@v2
-        if: steps.changes.outputs.js == 'true'
+      - name: Check for dist files
+        if: steps.changes.outputs.dist == 'true'
+      - name: Comment PR
+        if: steps.changes.outputs.dist == 'true'
+        uses: thollander/actions-comment-pull-request@v1
+        with:
+          message: 'Do not include dist files. Please read the [CONTRIBUTING](./CONTRIBUTING.md) before doing a PR.'
+          GITHUB_TOKEN: ${{ secrets.GB_TOKEN }}
+      - if: steps.changes.outputs.dist == 'true'
+        run: exit 1
+
+      #eslint
+      - name: Check if Javascript lint is required
+        if: success() && steps.changes.outputs.js == 'true'
+        uses: actions/setup-node@v2
         with:
           node-version: 14
       - name: Install
         if: steps.changes.outputs.js == 'true'
-        run: yarn
+        run: npm ci
       - name: Run eslint
         if: steps.changes.outputs.js == 'true'
         uses: tj-actions/eslint-changed-files@v7.3
