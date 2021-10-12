@@ -5,6 +5,8 @@
       "author": "biati digital",
       "license": "MIT",
       "repository": "https://github.com/biati-digital/tmpreltorem.git",
+      "main": "dist/js/glightbox.js",
+      "module": "src/js/glightbox.js",
       "files": [
             "index.js"
       ],
@@ -13,11 +15,20 @@
       },
       "scripts": {
             "lint": "eslint --ignore-path .gitignore index.js",
+            "build": "webpack --node-env=development --config webpack.config.js",
+            "build:production": "webpack --node-env=production --config webpack.config.js",
             "pretest": "npm run lint",
             "test": "ava"
       },
+      "sideEffects": false,
       "devDependencies": {
+            "css-loader": "^6.4.0",
+            "css-minimizer-webpack-plugin": "^3.1.1",
+            "esbuild-loader": "^2.16.0",
             "eslint": "^8.0.0",
-            "eslint-config-strongloop": "^2.1.0"
+            "mini-css-extract-plugin": "^2.4.2",
+            "postcss-loader": "^6.1.1",
+            "webpack": "^5.58.1",
+            "webpack-cli": "^4.9.0"
       }
 }
