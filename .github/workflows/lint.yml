@@ -3,7 +3,7 @@ name: Lint
 on: pull_request
 
 jobs:
-  check:
+  verify:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -21,7 +21,7 @@ jobs:
         run: echo 'Doing hulk.'
 
   eslint:
-    needs: check
+    needs: verify
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
