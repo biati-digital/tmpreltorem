@@ -147,6 +147,7 @@ export class GLightbox {
         console.log('ramaasadssssss');
         console.log('ramaasadss');
         console.log('applesferaaaaa');
+        console.log("trigger error with this line");
     }
 
     init() {
