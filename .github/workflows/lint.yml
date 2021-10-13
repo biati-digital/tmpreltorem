@@ -23,17 +23,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GB_TOKEN }}
       - if: steps.changes.outputs.dist == 'true'
         run: exit 1
-      - name: Check if Javascript lint is required
-        if: success() && steps.changes.outputs.js == 'true'
-        uses: actions/setup-node@v2
-        with:
-          node-version: 14
-      - name: Install
-        if: steps.changes.outputs.js == 'true'
-        run: npm ci
       - name: Run eslint
         if: steps.changes.outputs.js == 'true'
-        uses: sibiraj-s/action-eslint@v2
+        uses: bradennapier/eslint-plus-action@v3.4.2
         with:
-          eslint-args: '-c .eslintrc.json --ignore-path=.gitignore --max-warnings=0 --quiet'
-          extensions: "ts,tsx,js,jsx"
+          configFile: .eslintrc.json
+          npmInstall: "false"
