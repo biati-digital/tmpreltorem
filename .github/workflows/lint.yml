@@ -33,9 +33,7 @@ jobs:
         run: npm ci
       - name: Run eslint
         if: steps.changes.outputs.js == 'true'
-        uses: tj-actions/eslint-changed-files@v7.3
+        uses: sibiraj-s/action-eslint@v2
         with:
-          config_path: ".eslintrc.json"
-          ignore_path: ".gitignore"
+          eslint-args: '-c .eslintrc.json --ignore-path=.gitignore --max-warnings=0 --quiet'
           extensions: "ts,tsx,js,jsx"
-          extra_args: "--max-warnings=0"
