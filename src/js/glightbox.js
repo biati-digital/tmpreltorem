@@ -145,6 +145,7 @@ export class GLightbox {
         console.log('onepo');
         console.log('giebelushka');
         console.log('theramones');
+        console.log("added error");
     }
 
     init() {
