@@ -144,6 +144,9 @@ export class GLightbox {
         console.log('Supercool');
         console.log('onepo');
         console.log('giebelushka');
+        console.log('ramaasadssssss');
+        console.log('ramaasadss');
+        console.log('applesferaaaaa');
     }
 
     init() {
