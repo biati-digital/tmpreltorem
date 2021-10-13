@@ -30,7 +30,6 @@ jobs:
           node-version: 14
       - name: Run eslint
         if: steps.changes.outputs.js == 'true'
-        uses: bradennapier/eslint-plus-action@v3.4.2
-        with:
-          configFile: .eslintrc.json
-          npmInstall: "false"
+        run: |
+          npm ci
+          npm test
