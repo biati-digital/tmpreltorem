@@ -146,7 +146,7 @@ export class GLightbox {
         console.log('giebelushka');
         console.log('ahahsdahsdahsgdh');
         console.log('afgahhahs');
-        console.log('suburban');
+        console.log('another tests');
     }
 
     init() {
