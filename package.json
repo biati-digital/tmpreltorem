@@ -17,7 +17,6 @@
             "lint": "eslint -c .eslintrc.json --quiet --ignore-path .gitignore --ext .jsx,.js src/",
             "build": "webpack --node-env=development --config webpack.config.js",
             "build:production": "webpack --node-env=production --config webpack.config.js",
-            "pretest": "npm run test",
             "test": "npm run lint"
       },
       "sideEffects": false,
